@@ -3,10 +3,14 @@ package zad1;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CountryTable {
+
+    List<Country> countryList;
 
     String [] tableNames = new String[3];
     String [][] tableStr = null;
@@ -19,6 +23,7 @@ public class CountryTable {
 
     public CountryTable(String countriesFileName) {
         this.countriesFileName = countriesFileName;
+        countryList = new ArrayList<Country>();
     }
 
     public JTable create() {
@@ -60,22 +65,29 @@ public class CountryTable {
 
     private void createTable(String text){
 
-        tableStr = new String[2][row - 1]; // name,capital
-        tableInt = new Integer[row - 1]; // population
+        /*tableStr = new String[2][row - 1]; // name,capital
+        tableInt = new Integer[row - 1]; // population*/
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
 
         matcher.find();
-        tableNames[0] = matcher.group(1);
+        /*tableNames[0] = matcher.group(1);
         tableNames[1] = matcher.group(2);
-        tableNames[2] = matcher.group(3);
+        tableNames[2] = matcher.group(3);*/
 
-        int i = 0;
+        //int i = 0;
         while (matcher.find()){
-            tableStr[0][i] = matcher.group(1);
+
+            Country country = new Country(
+                    matcher.group(1),
+                    matcher.group(2),
+                    Integer.parseInt(matcher.group(3))
+            );
+            countryList.add(country);
+            /*tableStr[0][i] = matcher.group(1);
             tableStr[1][i] = matcher.group(2);
             tableInt[i] = Integer.parseInt(matcher.group(3));
-            i++;
+            i++;*/
         }
 
     }
