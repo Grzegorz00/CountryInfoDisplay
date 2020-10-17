@@ -29,6 +29,7 @@ public class CountryTable {
 
         MyTableModel model = new MyTableModel(countryList,columnNamesList);
         countryTable = new JTable(model);
+        countryTable.setDefaultRenderer(Integer.class, new IntegerTableRenderer());
 
         return countryTable;
     }
@@ -42,7 +43,7 @@ public class CountryTable {
             BufferedReader reader = new BufferedReader(new FileReader(txtFile));
             String line = null;
             while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line).append("\n")
+                stringBuilder.append(line).append("\n");
             }
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             reader.close();
