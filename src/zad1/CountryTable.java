@@ -31,14 +31,17 @@ public class CountryTable {
         String text = fileReader();
         createTable(text);
 
-        DefaultTableModel model = new DefaultTableModel();
+        /*DefaultTableModel model = new DefaultTableModel();
         model.addColumn(tableNames[0],tableStr[0]);
         model.addColumn(tableNames[1],tableStr[1]);
-        model.addColumn(tableNames[2],tableInt);
+        model.addColumn(tableNames[2],tableInt);*/
+
+        MyTableModel model = new MyTableModel(countryList);
+
         countryTable = new JTable(model);
         //countryTable.setForeground();
         //countryTable.setDefaultRenderer(Integer.class, new CustomTableRenderer());
-        model.
+
         return countryTable;
     }
 
