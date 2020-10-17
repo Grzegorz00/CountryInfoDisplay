@@ -7,22 +7,21 @@ public class MyTableModel extends AbstractTableModel {
 
     private final List<Country> countryList;
 
-    private final String[] columnNames = new String[] {
-            "Country","Capital","Population"
-    };
+    private final List<String> columnNames;
 
     private final Class[] columnClass = new Class[] {
             String.class, String.class, Integer.class
     };
 
-    public MyTableModel(List<Country> countryList) {
+    public MyTableModel(List<Country> countryList, List<String> columnNames) {
         this.countryList = countryList;
+        this.columnNames = columnNames;
     }
 
     @Override
     public String getColumnName(int column)
     {
-        return columnNames[column];
+        return columnNames.get(column);
     }
 
     @Override
@@ -38,7 +37,7 @@ public class MyTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columnNames.length;
+        return columnNames.size();
     }
 
     @Override
