@@ -14,7 +14,7 @@ public class CountryTable {
 
     String countriesFileName;
 
-    String regex = "([^\\t]*)\\t([^\\t]*)\\t([^\\t]*)[\\t ]*\\n";
+    String regex = "([^\\t]*)\\t([^\\t]*)\\t([^\\t]*)\\t([^\\t]*)[\\t ]*\\n";
     JTable countryTable;
 
     public CountryTable(String countriesFileName) {
@@ -25,11 +25,12 @@ public class CountryTable {
     public JTable create() {
 
         String text = fileReader();
-        createTable(text);
+        createCountryList(text);
 
         MyTableModel model = new MyTableModel(countryList,columnNamesList);
         countryTable = new JTable(model);
         countryTable.setDefaultRenderer(Integer.class, new IntegerTableRenderer());
+        countryTable.setRowHeight(countryList.get(0).getIcon().getIconHeight() + 20);
 
         return countryTable;
     }
@@ -54,23 +55,28 @@ public class CountryTable {
         return stringBuilder.toString();
     }
 
-    private void createTable(String text){
+    private void createCountryList(String text){
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
 
-        matcher.find();
-        columnNamesList.add(matcher.group(1));
-        columnNamesList.add(matcher.group(2));
-        columnNamesList.add(matcher.group(3));
+        if(matcher.find()) {
+            columnNamesList.add(matcher.group(1));
+            columnNamesList.add(matcher.group(2));
+            columnNamesList.add(matcher.group(3));
+            columnNamesList.add(matcher.group(4));
 
-        while (matcher.find()){
-            Country country = new Country(
-                    matcher.group(1),
-                    matcher.group(2),
-                    Integer.parseInt(matcher.group(3))
-            );
-            countryList.add(country);
+            Icon flag = null;
+            while (matcher.find()) {
+                Country country = new Country(
+                        matcher.group(1),
+                        matcher.group(2),
+                        Integer.parseInt(matcher.group(3)),
+                        flag = new ImageIcon("data/flags/" + matcher.group(4))
+                );
+                countryList.add(country);
+            }
         }
+
 
     }
 }

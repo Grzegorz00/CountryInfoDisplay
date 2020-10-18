@@ -1,5 +1,6 @@
 package zad1;
 
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class MyTableModel extends AbstractTableModel {
     private final List<String> columnNames;
 
     private final Class[] columnClass = new Class[] {
-            String.class, String.class, Integer.class
+            String.class, String.class, Integer.class, Icon.class
     };
 
     public MyTableModel(List<Country> countryList, List<String> columnNames) {
@@ -51,6 +52,9 @@ public class MyTableModel extends AbstractTableModel {
         }
         else if(2 == columnIndex) {
             return row.getPopulation();
+        }
+        else if(3 == columnIndex) {
+            return row.getIcon();
         }
         return null;
     }

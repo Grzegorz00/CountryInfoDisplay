@@ -16,7 +16,7 @@ public class IntegerTableRenderer extends DefaultTableCellHeaderRenderer {
         c.setHorizontalAlignment(RIGHT);
 
         Integer population = (Integer) value;
-        if(population > 20000) {
+        if(population > 20000000) {
             c.setForeground(Color.RED);
         }
 

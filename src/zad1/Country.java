@@ -1,15 +1,19 @@
 package zad1;
 
+import javax.swing.*;
+
 public class Country {
 
-    private String country;
-    private String capital;
-    private int population;
+    private final String country;
+    private final String capital;
+    private final int population;
+    private final Icon icon;
 
-    public Country(String country, String capital, int population) {
+    public Country(String country, String capital, int population,Icon icon) {
         this.country = country;
         this.capital = capital;
         this.population = population;
+        this.icon = icon;
     }
 
     public String getCountry() {
@@ -22,5 +26,9 @@ public class Country {
 
     public int getPopulation() {
         return population;
+    }
+
+    public Icon getIcon() {
+        return icon;
     }
 }
