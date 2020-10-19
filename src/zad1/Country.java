@@ -12,7 +12,7 @@ public class Country {
     public Country(String country, String capital, int population,Icon icon) {
         this.country = country;
         this.capital = capital;
-        this.population = population;
+        this.population = population/1000;
         this.icon = icon;
     }
 

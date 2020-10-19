@@ -1,11 +1,10 @@
 package zad1;
 
-import sun.swing.table.DefaultTableCellHeaderRenderer;
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
-public class IntegerTableRenderer extends DefaultTableCellHeaderRenderer {
+public class IntegerTableRenderer extends DefaultTableCellRenderer {
 
 
     @Override
@@ -16,8 +15,10 @@ public class IntegerTableRenderer extends DefaultTableCellHeaderRenderer {
         c.setHorizontalAlignment(RIGHT);
 
         Integer population = (Integer) value;
-        if(population > 20000000) {
+        if(population > 20000) {
             c.setForeground(Color.RED);
+        } else {
+            c.setForeground(Color.BLACK);
         }
 
         return c;
